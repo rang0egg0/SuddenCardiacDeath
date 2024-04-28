@@ -1,0 +1,10 @@
+install.packages("dplyr")
+library(dplyr)
+library(tidyr)
+ 
+pheno <- read.table("Phenolyzer_june14_SeedGeneList.txt")
+clinV<- read.delim("~/Documents/ANSAD/Candidate_Genes/Jan24/clinvar_result_june15_.txt")
+OMIM_SAD <- read.table("~/Documents/master_project/Candidate_Genes/OMIM_SAD_july26_NAMESONLY.tsv")
+OMIM_SCD<- read.table("~/Documents/master_project/Candidate_Genes/OMIM_sudden_cardiac_death_july26_NAMESONLY.tsv")
+OT_CA<- read.table("~/Documents/ANSAD/Candidate_Genes/Jan24/open_targets_cardiac_arrhythmia_july26.tsv")
+OT_SCA<-read.table("~/Documents/ANSAD/Candidate_Genes/Jan24/open_targets_sudden_cardiac_arrest_july26.tsv")
