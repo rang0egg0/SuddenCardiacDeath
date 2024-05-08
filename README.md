@@ -35,7 +35,7 @@ sbatch vcf_to_PLINK.slurm
 ```
 
 ### Step 1.4: (slurm, PLINK) Perform quality control on PLINK output
-#### performs QC without regard to Hardy-Weinberg equilibrium and removes variants that do not meet QC standards
+performs QC without regard to Hardy-Weinberg equilibrium and removes variants that do not meet QC standards
 ```
 sbatch plinkQC.slurm
 ```
