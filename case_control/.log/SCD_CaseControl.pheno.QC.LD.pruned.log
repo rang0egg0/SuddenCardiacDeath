@@ -1,0 +1,65 @@
+PLINK v1.90b6.10 64-bit (17 Jun 2019)
+Options in effect:
+  --allow-extra-chr
+  --allow-no-sex
+  --bfile SCD_CaseControl.pheno.QC
+  --chr-set 31
+  --indep-pairwise 100 25 0.2
+  --nonfounders
+  --out SCD_CaseControl.pheno.QC.LD.pruned
+
+Hostname: acn44
+Working directory: /panfs/jay/groups/6/durwa004/stock526/Aim3/case_control/data
+Start time: Tue May  7 13:51:19 2024
+
+Random number seed: 1715107879
+515417 MB RAM detected; reserving 257708 MB for main workspace.
+8006172 variants loaded from .bim file.
+100 samples (0 males, 0 females, 100 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to SCD_CaseControl.pheno.QC.LD.pruned.nosex .
+100 phenotype values loaded from .fam.
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 100 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is 0.999889.
+8006172 variants and 100 samples pass filters and QC.
+Among remaining phenotypes, 50 are cases and 50 are controls.
+Pruned 511345 variants from chromosome 1, leaving 20515.
+Pruned 430744 variants from chromosome 2, leaving 18044.
+Pruned 412856 variants from chromosome 3, leaving 17627.
+Pruned 325563 variants from chromosome 4, leaving 12365.
+Pruned 297809 variants from chromosome 5, leaving 14043.
+Pruned 278998 variants from chromosome 6, leaving 11939.
+Pruned 299439 variants from chromosome 7, leaving 12689.
+Pruned 323830 variants from chromosome 8, leaving 14928.
+Pruned 271181 variants from chromosome 9, leaving 10854.
+Pruned 255528 variants from chromosome 10, leaving 10673.
+Pruned 173610 variants from chromosome 11, leaving 7749.
+Pruned 138795 variants from chromosome 12, leaving 8277.
+Pruned 152571 variants from chromosome 13, leaving 8563.
+Pruned 272151 variants from chromosome 14, leaving 10796.
+Pruned 308856 variants from chromosome 15, leaving 12758.
+Pruned 291240 variants from chromosome 16, leaving 11896.
+Pruned 282044 variants from chromosome 17, leaving 10024.
+Pruned 277895 variants from chromosome 18, leaving 10999.
+Pruned 219780 variants from chromosome 19, leaving 9687.
+Pruned 258304 variants from chromosome 20, leaving 14047.
+Pruned 196716 variants from chromosome 21, leaving 8215.
+Pruned 159290 variants from chromosome 22, leaving 6102.
+Pruned 174124 variants from chromosome 23, leaving 7789.
+Pruned 159418 variants from chromosome 24, leaving 7484.
+Pruned 110774 variants from chromosome 25, leaving 4374.
+Pruned 155227 variants from chromosome 26, leaving 6633.
+Pruned 162783 variants from chromosome 27, leaving 7137.
+Pruned 152101 variants from chromosome 28, leaving 6460.
+Pruned 120687 variants from chromosome 29, leaving 7790.
+Pruned 115866 variants from chromosome 30, leaving 4414.
+Pruned 97117 variants from chromosome 31, leaving 3533.
+Pruned 277739 variants from chromosome 32, leaving 20660.
+Pruned 134 variants from chromosome 35, leaving 9.
+Pruned 1908 variants from chromosome 36, leaving 676.
+Pruning complete.  7666423 of 8006172 variants removed.
+Marker lists written to SCD_CaseControl.pheno.QC.LD.pruned.prune.in and
+SCD_CaseControl.pheno.QC.LD.pruned.prune.out .
+
+End time: Tue May  7 13:51:38 2024
