@@ -87,3 +87,16 @@ case_control/GWAS/manhattan_plots.R
 
 # VARIANT ANALYSIS BY CANDIDATE GENES
 
+### Step 3.1 Subset general population VCF by cases and remove cases from general population VCF
+```
+sbatch Candidate_Genes/subset_cases&genpop.slurm
+```
+
+
+### Step 3.2 Subset general population (excluding cases) and cases by candidate gene regions
+```
+sbatch Candidate_Genes/subset_by_CG.slurm
+```
+
+
+### Step 3.3 Obtain the longest transcript for each variant
