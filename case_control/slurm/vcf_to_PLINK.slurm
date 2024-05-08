@@ -11,19 +11,30 @@
 #SBATCH -e plink.%j.e 
 #SBATCH -o plink.%j.o 
 
-module load plink/1.90b6.10 
+# Load the PLINK software module version 1.90b6.10
+module load plink/1.90b6.10
+
+# Change directory to where your data is located
 cd /home/durwa004/stock526/Aim3/case_control/data
 
-#Convert VCF to plink binary files
-plink\
- --chr-set 31 --nonfounders --double-id --allow-no-sex\
- --vcf SCD_CaseControl.goldenPath.decomposed.snpeff.snpsift.CC.vcf.gz\
- --make-bed --allow-extra-chr --vcf-half-call missing\
- --out SCD_CaseControl 
+# Run PLINK with the following options:
+# --chr-set 31: Set the chromosome code to 31
+# --nonfounders: Include non-founders in the analysis
+# --double-id: Allow duplicate IDs
+# --allow-no-sex: Allow samples with missing sex information
+# --vcf: Input VCF file name
+# --make-bed: Convert VCF to PLINK binary format
+# --allow-extra-chr: Allow extra chromosomes in the data
+# --vcf-half-call missing: Treat half-calls in VCF files as missing data
+# --pheno: Input phenotype file name
+# --pheno-name PHENOTYPE: Specify the column name for phenotype data
+# --recode: Recode the data after adding phenotype information
+# --out: Output file name prefix
 
-#Add in phenotype data
-plink\
- --chr-set 31 --nonfounders --allow-no-sex --allow-extra-chr\
- --bfile SCD_CaseControl\
- --pheno SCD_CC_TFAM.tfam --pheno-name PHENOTYPE --recode\
- --out SCD_CaseControl.pheno
+plink \
+ --chr-set 31 --nonfounders --double-id --allow-no-sex \
+ --vcf SCD_CaseControl.goldenPath.decomposed.snpeff.snpsift.CC.vcf.gz \
+ --make-bed --allow-extra-chr --vcf-half-call missing \
+ --pheno SCD_CC_TFAM.tfam --pheno-name PHENOTYPE --recode \
+ --out testing_may8
+
