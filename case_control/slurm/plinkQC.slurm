@@ -21,5 +21,5 @@ cd /home/durwa004/stock526/Aim3/case_control/data
 plink \
  --chr-set 31 --nonfounders --allow-no-sex --allow-extra-chr \
  --file SCD_CaseControl.pheno \  # Input file name
- --maf 0.05 --geno 0.1 \  # Minimum allele frequency and genotype missingness thresholds
+ --maf 0.01 --geno 0.1 \  # Minimum allele frequency and genotype missingness thresholds
  --make-bed --out SCD_CaseControl.pheno.QC  # Output file name prefix
