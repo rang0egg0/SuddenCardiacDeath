@@ -1,5 +1,5 @@
 #!/bin/bash -l
-#SBATCH --job-name=plink.slurm
+#SBATCH --job-name=vcftoplink.slurm
 #SBATCH --nodes=1 #specify one node
 #SBATCH --ntasks=1
 #SBATCH --time=24:00:00 
@@ -8,8 +8,8 @@
 #SBATCH --mail-type=ALL 
 #SBATCH --mail-user=stock526@umn.edu 
 #SBATCH -A durwa004 
-#SBATCH -e plink.%j.e 
-#SBATCH -o plink.%j.o 
+#SBATCH -e vcftoplink.%j.e 
+#SBATCH -o vcftoplink.%j.o 
 
 # Load the PLINK software module version 1.90b6.10
 module load plink/1.90b6.10
