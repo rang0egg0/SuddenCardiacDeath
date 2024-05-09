@@ -36,5 +36,5 @@ plink \
  --vcf SCD_CaseControl.goldenPath.decomposed.snpeff.snpsift.CC.vcf.gz \
  --make-bed --allow-extra-chr --vcf-half-call missing \
  --pheno SCD_CC_TFAM.tfam --pheno-name PHENOTYPE --recode \
- --out testing_may8
+ --out SCD
 
