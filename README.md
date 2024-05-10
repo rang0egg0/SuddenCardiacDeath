@@ -35,18 +35,28 @@ SCD_CaseControl.goldenPath.decomposed.snpeff.snpsift.CC.vcf.gz
 sbatch SnpSift_case_control.slurm
 ```
 
-
-### Step 1.3: (slurm, PLINK) Create binary PLINK files for data
-creates PLINK binary outputs from VCF and adds in phenotype (case/control status) data
+### Step 1.3 (slurm, BCFtools) Create unique IDs for SNPs
+Annotates the "ID" column of the vcf to give each SNP a unique ID (chrom_pos_alt)
 #### Infile
 SCD_CaseControl.goldenPath.decomposed.snpeff.snpsift.CC.vcf.gz
+#### Outfile
+SCD_CaseControl.goldenPath.decomposed.snpeff.snpsift.CC.ID.vcf.gz
+```
+sbatch bcftools_SNPids.slurm
+tabix SCD_CaseControl.goldenPath.decomposed.snpeff.snpsift.CC.ID.vcf.gz
+```
+
+### Step 1.4: (slurm, PLINK) Create binary PLINK files for data
+creates PLINK binary outputs from VCF and adds in phenotype (case/control status) data
+#### Infile
+SCD_CaseControl.goldenPath.decomposed.snpeff.snpsift.CC.ID.vcf.gz
 #### Outfile
 SCD.(bim, bed, fam, log, map, nosex, ped)
 ```
 sbatch vcf_to_PLINK.slurm
 ```
 
-### Step 1.4: (slurm, PLINK) Perform quality control on PLINK output
+### Step 1.5: (slurm, PLINK) Perform quality control on PLINK output
 performs QC without regard to Hardy-Weinberg equilibrium and removes variants that do not meet QC standards
 #### Infile
 SCD.     
@@ -56,7 +66,7 @@ SCD.QC.
 sbatch plinkQC.slurm
 ```
 
-### Step 1.5.1: (slurm, PLINK) Prune variants in linkage disequilibrium 
+### Step 1.6.1: (slurm, PLINK) Prune variants in linkage disequilibrium 
 calculates which variants are in LD putting the SNP_IDs in a .in and .out file
 #### Infile
 SCD.QC  
@@ -67,7 +77,7 @@ SCD.QC.LDpruned.
 ```
 sbatch plink_prune1.slurm
 ```
-### Step 1.5.2: (slurm, PLINK) Prune variants in linkage disequilibrium 
+### Step 1.6.2: (slurm, PLINK) Prune variants in linkage disequilibrium 
 Filters out variants that are in LD from SCD.QC. 
 #### Infile
 SCD.QC
@@ -78,18 +88,17 @@ SCD.QC.LDpruned.final
 sbatch plink_prune2.slurm
 ```
 
-### Step 1.6: (Python) Get type of variant
+### Step 1.7: (Python) Get type of variant
 ```
 sbatch get_type_of_variant.py
 ```
 
-### Step 1.7: (Python) Prune variants that do not meet P-Value thresholds 
+### Step 1.8: (Python) Prune variants that do not meet P-Value thresholds 
 Retains only variants where at least one of the P-Values calculated in Step 1.2 meets the significance threshold. The significance threshold is based on a Bonferroni correction (0.05/x), x = the total number of variants. The value for "x" can be found in the .log file for PLINK analysis in Step __. 
 ```
 sbatch SnpSiftResults.py
 ```
 
-### Step 1.8 (
 
 ## GWAS WORK 
 
