@@ -63,6 +63,7 @@ SCD.
 #### Outfile
 SCD.QC.
 ```
+cd PLINK
 sbatch plinkQC.slurm
 ```
 
