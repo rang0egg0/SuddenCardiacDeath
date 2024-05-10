@@ -17,12 +17,20 @@ jan24can_gen.R
 # CASE CONTROL WORK  
 
 ### Step 1.1: (slurm, bcftools) Subset cases and controls from population VCF
+#### Infile
+joint_call_passing.annotated.goldenPath.20230726.vcf.gz
+#### Outfile
+SCD_CaseControl.goldenPath.vcf.gz 
 ```
 sbatch subsetting_population_by_CasesControls.slurm
 ```
 
 ### Step 1.2: (slurm, SnpSift) CaseControl annotations
 calculates four p-values for each variant based on four different models of genetic expression (dominant, recessive, codominant/genotypic, and Cochran Armitage). P-values are appended to the end of the INFO field
+#### Infile
+SCD_CaseControl.goldenPath.vcf.gz 
+#### Outfile
+SCD_CaseControl.goldenPath.decomposed.snpeff.snpsift.CC.vcf.gz
 ```
 sbatch SnpSift_case_control.slurm
 ```
@@ -30,20 +38,44 @@ sbatch SnpSift_case_control.slurm
 
 ### Step 1.3: (slurm, PLINK) Create binary PLINK files for data
 creates PLINK binary outputs from VCF and adds in phenotype (case/control status) data
+#### Infile
+SCD_CaseControl.goldenPath.decomposed.snpeff.snpsift.CC.vcf.gz
+#### Outfile
+SCD.(bim, bed, fam, log, map, nosex, ped)
 ```
 sbatch vcf_to_PLINK.slurm
 ```
 
 ### Step 1.4: (slurm, PLINK) Perform quality control on PLINK output
 performs QC without regard to Hardy-Weinberg equilibrium and removes variants that do not meet QC standards
+#### Infile
+SCD.     
+#### Outfile
+SCD.QC.
 ```
 sbatch plinkQC.slurm
 ```
 
-### Step 1.5: (slurm, PLINK) Prune variants in linkage disequilibrium 
-calculates which variants are in LD and then creates a new file that includes only variants that are not in LD
+### Step 1.5.1: (slurm, PLINK) Prune variants in linkage disequilibrium 
+calculates which variants are in LD putting the SNP_IDs in a .in and .out file
+#### Infile
+SCD.QC  
+#### Outfile
+SCD.QC.LDpruned.prune.in
+SCD.QC.LDpruned.prune.out
+SCD.QC.LDpruned.
 ```
-sbatch plink_prune.slurm
+sbatch plink_prune1.slurm
+```
+### Step 1.5.2: (slurm, PLINK) Prune variants in linkage disequilibrium 
+Filters out variants that are in LD from SCD.QC. 
+#### Infile
+SCD.QC
+SCD.QC.LDpruned.prune.in
+#### Outfile
+SCD.QC.LDpruned.final
+```
+sbatch plink_prune2.slurm
 ```
 
 ### Step 1.6: (Python) Get type of variant
