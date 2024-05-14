@@ -42,7 +42,7 @@ SCD_CaseControl.goldenPath.decomposed.snpeff.snpsift.CC.vcf.gz
 #### Outfile
 SCD_CaseControl.goldenPath.decomposed.snpeff.snpsift.CC.ID.vcf.gz
 ```
-sbatch bcftools_SNPids.slurm
+sbatch bcftools_generate_SNPids.slurm
 tabix SCD_CaseControl.goldenPath.decomposed.snpeff.snpsift.CC.ID.vcf.gz
 ```
 
@@ -89,9 +89,37 @@ SCD.QC.LDpruned.final
 sbatch plink_prune2.slurm
 ```
 
+### Step 1.7 Plink back to VCF
+#### Infile
+SCD.QC.LDpruned.final
+
+#### Outfile
+SCD_final_genotypes.vcf.gz
+```
+sbatch plink_to_VCF.slurm
+bgzip SCD_final_genotypes.vcf
+tabix SCD_final_genotypes.vcf.gz
+```
+
+### Step 1.8 Obtain SNP IDs
+#### Infile
+SCD_final_genotypes.vcf.gz
+#### Outfile
+final_snp_ids.txt
+
+### Step 1.8 Subset VCF by snpID
+#### Infile
+SCD_CaseControl.goldenPath.decomposed.snpeff.snpsift.CC.ID.vcf.gz
+#### Outfile
+final.vcf.gz
+```
+bcftools view -i 'ID=@final_snp_ids.txt' SCD_CaseControl.goldenPath.decomposed.snpeff.snpsift.CC.ID.vcf.gz -o final.vcf
+bgzip final.vcf
+tabix final.vcf.gz
+
 ### Step 1.7: (Python) Get type of variant
 ```
-sbatch get_type_of_variant.py
+ipython /home/durwa004/stock526/Aim3/case_control/scripts/python/get_type_of_variant.py -d /home/durwa004/stock526/Aim3/case_control/data/inal.vcf.gz -p SnpEff
 ```
 
 ### Step 1.8: (Python) Prune variants that do not meet P-Value thresholds 
