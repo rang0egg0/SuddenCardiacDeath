@@ -116,10 +116,11 @@ final.vcf.gz
 bcftools view -i 'ID=@final_snp_ids.txt' SCD_CaseControl.goldenPath.decomposed.snpeff.snpsift.CC.ID.vcf.gz -o final.vcf
 bgzip final.vcf
 tabix final.vcf.gz
+```
 
 ### Step 1.7: (Python) Get type of variant
 ```
-ipython /home/durwa004/stock526/Aim3/case_control/scripts/python/get_type_of_variant.py -d /home/durwa004/stock526/Aim3/case_control/data/inal.vcf.gz -p SnpEff
+ipython /home/durwa004/stock526/Aim3/case_control/scripts/python/get_type_of_variant.py -d /home/durwa004/stock526/Aim3/case_control/data/final.vcf.gz -p SnpEff
 ```
 
 ### Step 1.8: (Python) Prune variants that do not meet P-Value thresholds 
