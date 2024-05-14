@@ -119,15 +119,28 @@ tabix final.vcf.gz
 ```
 
 ### Step 1.7: (Python) Get type of variant
+#### Infile
+final.vcf.gz
+#### Outfile 
+ANSAD_SnpSift_case_control.txt
 ```
 ipython /home/durwa004/stock526/Aim3/case_control/scripts/python/get_type_of_variant.py -d /home/durwa004/stock526/Aim3/case_control/data/final.vcf.gz -p SnpEff
 ```
 
 ### Step 1.8: (Python) Prune variants that do not meet P-Value thresholds 
-Retains only variants where at least one of the P-Values calculated in Step 1.2 meets the significance threshold. The significance threshold is based on a Bonferroni correction (0.05/x), x = the total number of variants. The value for "x" can be found in the .log file for PLINK analysis in Step __. 
+Retains only variants where at least one of the P-Values calculated in Step 1.2 meets the significance threshold. The significance threshold is based on a Bonferroni correction (0.05/x), x = the total number of variants. The value for "x" can be found in the .log file for PLINK analysis in Step 1.6.2. 
+#### Infile 
+SnpEff.hml.txt
+#### Outfile 
+ANSAD_SnpSift_case_control.txt
 ```
 sbatch SnpSiftResults.py
 ```
+
+### Step 1.9 (R) Final Variant Analysis (yayy!!)
+Local R, download ANSAD_SnpSift_case_control.txt. 
+#### Infile : 
+ANSAD_SnpSift_case_control.txt
 
 
 ## GWAS WORK 
